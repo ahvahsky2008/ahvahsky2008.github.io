@@ -139,6 +139,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
     
     tg.expand()
+
+    tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
+
     let savebtn = document.getElementById('saveButton')
     
     savebtn.addEventListener("click", async () => {
