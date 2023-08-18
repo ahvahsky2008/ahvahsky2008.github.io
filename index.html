@@ -227,14 +227,15 @@
 <body>
 
 
+  <section>
   <input type="text" placeholder='ФИО' id="fullName">
   <input type="text" placeholder='Адрес' id="address">
   <input type="text" placeholder='Номер телефона' id="phoneNumber">
 
   <h1>Нарисуй подпись</h1>
-  <canvas id="canvas" style="border:1px solid #000000;" width="400" height="300"></canvas>
+  <canvas id="canvas" style="border:1px solid #000000;" width="400" height="250"></canvas>
   <button id="saveButton">Сформировать</button>
-
+  </section>
 
   <script>
     const canvas = document.getElementById("canvas");
@@ -306,6 +307,7 @@
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
       const uuid = generateUUID(); // Генерируем UUID
+      
       const data = {
         base64Image: base64Image,
         uuid: uuid
