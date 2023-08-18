@@ -85,7 +85,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     let axixa = window.Telegram.WebApp.initDataUnsafe.user.id;
-    alert('cir'+axixa);
+    alert('cir222 '+axixa);
     
     //document.getElementById('fullName').value = 'Курае Ахвах';
     //document.getElementById('address').value ='Горького';
@@ -185,11 +185,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
-      uuid = String(tg.initDataUnsafe.user.id.toString())
+      var user_id = String(tg.initDataUnsafe.user.id.toString())
       alert('ax1'+tg.initDataUnsafe.user.id);
       const data = {
         base64Image: base64Image,
-        uuid: uuid
+        user_id: user_id
       };
 
 
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       let result_data = {
-        uuid: uuid,
+        user_id: user_id,
         fullName: fullName,
         address: address, 
         phoneNumber: phoneNumber
