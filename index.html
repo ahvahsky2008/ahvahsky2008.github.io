@@ -84,8 +84,10 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name
-
+      document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
+    document.getElementById('fullName').value = 'Курае Ахвах';
+        document.getElementById('address').value ='Горького';
+        document.getElementById('phoneNumber').value='798234';
 
     });
 </script>
@@ -151,6 +153,11 @@ document.addEventListener("DOMContentLoaded", function() {
       let phoneNumber = document.getElementById('phoneNumber').value;
 
       if (fullName === "" || address === "" || phoneNumber === "" || isCanvasEmpty()===true) {
+        Swal.fire(
+                'Good job!',
+                'Заполните все поля!',
+                'question'
+                )
              alert("Заполните все поля перед сохранением.");
             return;
        }
