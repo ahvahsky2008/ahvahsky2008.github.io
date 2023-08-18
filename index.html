@@ -134,8 +134,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   <script>
     
+    alert('12');
     Telegram.WebApp.ready();
-
+    alert('23');
 
     var initData = Telegram.WebApp.initData || '';
     var initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
@@ -148,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
     
-    tg.expand()
+    tg.expand();
 
     tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
 
