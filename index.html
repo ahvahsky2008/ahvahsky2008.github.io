@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     savebtn.addEventListener("click", async () => {
     
-        alert(tg.initDataUnsafe.user.id);
 
         // document.getElementById('fullName').value = 'Курае Ахвах';
         // document.getElementById('address').value ='Горького';
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
       var user_id = String(tg.initDataUnsafe.user.id.toString());
-      alert('ax1'+tg.initDataUnsafe.user.id);
+
       const data = {
         base64Image: base64Image,
         user_id: user_id
@@ -215,8 +214,11 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       Swal.close();
-      
+      alert(JSON.stringify(result_data));
+
       tg.sendData(JSON.stringify(result_data))
+      alert('sending');
+      
       tg.close();
     });
 
