@@ -139,11 +139,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var initData = Telegram.WebApp.initData || '';
     var initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-    alert(initData)
-    alert(initDataUnsafe)
+    alert(initData);
+    alert(initDataUnsafe);
 
     let tg = window.Telegram.WebApp;
     
+    tg.MainButton.show(); //показываем 
+
     document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
     
     tg.expand()
