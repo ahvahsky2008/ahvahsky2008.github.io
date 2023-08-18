@@ -95,8 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <input type="text" placeholder='ФИО' id="fullName">
   <input type="text" placeholder='Адрес' id="address">
   <input type="text" placeholder='Номер телефона' id="phoneNumber">
-
-  <h1>Нарисуй подпись</h1>
+  <h3>Нарисуй подпись</h3>
   <canvas id="canvas" style="border:1px solid #000000;" width="400" height="250"></canvas>
   <button id="saveButton">Сформировать</button>
 
@@ -142,9 +141,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     savebtn.addEventListener("click", async () => {
     
+        document.getElementById('fullName').value = 'Курае Ахвах';
+        document.getElementById('address').value ='Горького';
+        document.getElementById('phoneNumber').value='798234';
 
-    
       let fullName = document.getElementById('fullName').value;
+      
       let address = document.getElementById('address').value;
       let phoneNumber = document.getElementById('phoneNumber').value;
 
