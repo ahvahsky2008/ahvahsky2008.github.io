@@ -3,26 +3,239 @@
 <head>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress/nprogress.css">
-<script src="https://cdn.jsdelivr.net/npm/nprogress/nprogress.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Пример рисования</title>
-<style>
-  #canvas {
-    border: 1px solid black;
-  }
-</style>
+
+<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+    <script>
+        function setThemeClass() {
+            document.documentElement.className = Telegram.WebApp.colorScheme;
+        }
+        Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+        setThemeClass();
+    </script>
+    <style>
+        body {
+            --bg-color: var(--tg-theme-bg-color, #fff);
+            font-family: sans-serif;
+            background-color: var(--bg-color);
+            color: var(--tg-theme-text-color, #222);
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color-scheme: var(--tg-color-scheme);
+        }
+        body.gray {
+            background-color: var(--tg-theme-secondary-bg-color, #efefef);
+        }
+
+        a {
+            color: var(--tg-theme-link-color, #2678b6);
+        }
+        .btn {
+            font-size: 14px;
+            padding: 10px 17px;
+        }
+        .btn-primary {
+            background-color: var(--tg-theme-button-color, #50a8eb);
+            color: var(--tg-theme-button-text-color, #fff);
+            border: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            margin: 15px 0;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--tg-theme-button-color, #50a8eb);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            cursor: pointer;
+        }
+        .main-container {
+            padding: 15px;
+        }
+        .list-header {
+            text-transform: uppercase;
+            font-size: .92em;
+            color: var(--tg-theme-hint-color, #ccc);
+            margin: 0 0 10px;
+        }
+        a.list-group-item,
+        button.list-group-item {
+            color: var(--tg-theme-text-color, #222);
+        }
+        .main-container p {
+            margin: 0 0 10px;
+        }
+        .main-container pre,
+        .main-container > .btn {
+            margin: 0 0 7px;
+        }
+        .main-container pre + .hint,
+        .main-container > .btn + .hint {
+            text-align: center;
+            margin: 0 0 15px;
+        }
+
+        button[disabled] {
+            opacity: 0.6;
+            cursor: auto;
+            pointer-events: none;
+        }
+
+        button.close_btn {
+            /*position: fixed;*/
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0;
+            margin: 0;
+            padding: 16px 20px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"],
+        .input[contenteditable] {
+            display: block;
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0;
+            border: 1px solid var(--tg-theme-link-color, #000);
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 4px;
+            color: var(--tg-theme-text-color, #222222);
+            text-align: start;
+        }
+        input[type="text"]::-webkit-input-placeholder {
+            color: var(--tg-theme-hint-color, #ccc);
+        }
+        input[type="text"]::-moz-placeholder {
+            color: var(--tg-theme-hint-color, #ccc);
+        }
+        input[type="text"]:-ms-input-placeholder {
+            color: var(--tg-theme-hint-color, #ccc);
+        }
+        .input[data-placeholder] {
+            position: relative;
+        }
+        .input[data-placeholder]:empty:before {
+            position: absolute;
+            left: 0;
+            right: 0;
+            content: attr(data-placeholder);
+            color: var(--tg-theme-hint-color, #ccc);
+            padding: 0 20px;
+            font-weight: normal;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        section {
+            padding: 15px;
+            text-align: center;
+            background-color: var(--bg-color, #ffffff);
+        }
+        section#top_sect {
+            background-color: var(--tg-theme-bg-color, #ffffff);
+        }
+        section#top_sect.second {
+            background-color: var(--tg-theme-secondary-bg-color, #efefef);
+        }
+        section .sect_row {
+            margin: 10px 0;
+        }
+        section + section {
+            padding: 0 15px 65px;
+        }
+        p {
+            margin: 40px 0 15px;
+        }
+        ul {
+            text-align: left;
+        }
+        li {
+            color: var(--tg-theme-hint-color, #a8a8a8);
+        }
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 7px;
+        }
+        pre {
+            background: rgba(0, 0, 0, .07);
+            color: var(--tg-theme-text-color, #222);
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 7px 0;
+            word-break: break-word;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        .dark pre {
+            background: rgba(255, 255, 255, .15);
+        }
+        .chat_img {
+            width: 30px;
+            border-radius: 15px;
+            margin-right: 10px;
+        }
+        .columns {
+            display: flex;
+        }
+        .columns>* {
+            flex-grow: 1;
+        }
+        .hint {
+            font-size: .8em;
+            color: var(--tg-theme-hint-color, #a8a8a8);
+        }
+        .ok {
+            color: green;
+        }
+        .err {
+            color: red;
+        }
+        .status_need {
+            display: none;
+        }
+        #fixed_wrap {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            transform: translateY(100vh);
+        }
+        
+        small {
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
 
-<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
 
-  <h1>Рисование на холсте</h1>
-  <canvas id="canvas" width="400" height="300"></canvas>
-  <button id="saveButton">Сохранить</button>
+  <input type="text" placeholder='ФИО' id="fullName">
+  <input type="text" placeholder='Адрес' id="address">
+  <input type="text" placeholder='Номер телефона' id="phoneNumber">
+
+  <h1>Нарисуй подпись</h1>
+  <canvas id="canvas" style="border:1px solid #000000;" width="400" height="300"></canvas>
+  <button id="saveButton">Сформировать</button>
+
+
   <script>
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
@@ -46,7 +259,7 @@
       if (!painting) return;
       context.lineWidth = 5;
       context.lineCap = "round";
-      context.strokeStyle = "black";
+      context.strokeStyle = "blue";
 
       context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
       context.stroke();
@@ -63,6 +276,29 @@
     let savebtn = document.getElementById('saveButton')
     
     savebtn.addEventListener("click", async () => {
+    
+
+    
+      let fullName = document.getElementById('fullName')
+      let address = document.getElementById('address')
+      let phoneNumber = document.getElementById('phoneNumber')
+
+      if (fullName.value.trim() === "" || address.value.trim() === "" || phoneNumber.value.trim() === "" || isCanvasEmpty()===true) {
+             alert("Заполните все поля перед сохранением.");
+            return;
+       }
+
+
+       Swal.fire({
+        title: 'Подождите...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        showConfirmButton: false,
+        html: '<progress></progress>'
+      });
+
+      
       const image = canvas.toDataURL("image/png");
       const base64Image = image.split(",")[1];
       console.log("Base64 Image:", base64Image);
@@ -75,7 +311,6 @@
         uuid: uuid
       };
 
-      NProgress.start(); // Начать показ прогресс-бара
 
       try {
         // Отправляем данные на сервер
@@ -96,10 +331,23 @@
         console.error("Error during upload:", error);
       }
 
-      NProgress.done(); // Завершить показ прогресс-бара
-      tg.sendData(uuid)
+      Swal.close();
+    tg.sendData(uuid)
       tg.close();
     });
+
+    function isCanvasEmpty() {
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            if (data[i + 3] !== 0) { // Проверяем альфа-канал (прозрачность)
+            return false;
+            }
+        }
+
+        return true;
+    }
 
     function generateUUID() {
       return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
