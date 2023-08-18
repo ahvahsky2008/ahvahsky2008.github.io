@@ -144,10 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     savebtn.addEventListener("click", async () => {
     
 
-        // document.getElementById('fullName').value = 'Курае Ахвах';
-        // document.getElementById('address').value ='Горького';
-        // document.getElementById('phoneNumber').value='798234';
-
+        
       let fullName = document.getElementById('fullName').value;
       
       let address = document.getElementById('address').value;
@@ -179,7 +176,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
-      var user_id = String(tg.initDataUnsafe.user.id.toString());
+      alert('before');
+      
+      let user_id = String(tg.initDataUnsafe.user.id.toString());
+      alert('after');
+      alert(user_id);
 
       const data = {
         base64Image: base64Image,
@@ -239,3 +240,4 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 </body>
 </html>
+
