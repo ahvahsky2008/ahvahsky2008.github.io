@@ -150,10 +150,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     tg.expand();
 
+    tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
 
-    tg.MainButton.text = "Сформировать";
-
-    tg.MainButton.onClick(() =>  {
+    
+    tg.MainButton.onClick(async () => {
          
         let fullName = document.getElementById('fullName').value;
         
