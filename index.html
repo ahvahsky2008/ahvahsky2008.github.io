@@ -150,10 +150,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     tg.expand();
 
-    tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
 
-    
-    Telegram.WebApp.onEvent('mainButtonClicked', async () => {
+    tg.MainButton.text = "Сформировать";
+
+    tg.MainButton.onClick(() =>  {
          
         let fullName = document.getElementById('fullName').value;
         
