@@ -10,10 +10,13 @@
   }
 </style>
 </head>
-<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
-
 
 <body>
+
+    <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
+
+
   <h1>Рисование на холсте</h1>
   <canvas id="canvas" width="400" height="300"></canvas>
   <button id="saveButton">Сохранить</button>
@@ -59,8 +62,9 @@
     savebtn.addEventListener("click", () => {
       const image = canvas.toDataURL("image/png");
       const base64Image = image.split(",")[1];
-      console.log("Base64 Image:", base64Image);
-      tg.sendData(base64Image);
+      const compressedData = pako.deflate(base64Image, { to: 'string' });
+
+      tg.sendData(compressedData);
       tg.close();
     });
 
