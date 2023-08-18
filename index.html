@@ -279,11 +279,11 @@
     
 
     
-      let fullName = document.getElementById('fullName')
-      let address = document.getElementById('address')
-      let phoneNumber = document.getElementById('phoneNumber')
+      let fullName = document.getElementById('fullName').value;
+      let address = document.getElementById('address').value;
+      let phoneNumber = document.getElementById('phoneNumber').value;
 
-      if (fullName.value.trim() === "" || address.value.trim() === "" || phoneNumber.value.trim() === "" || isCanvasEmpty()===true) {
+      if (fullName === "" || address === "" || phoneNumber === "" || isCanvasEmpty()===true) {
              alert("Заполните все поля перед сохранением.");
             return;
        }
@@ -331,8 +331,16 @@
         console.error("Error during upload:", error);
       }
 
+      let result_data = {
+        uuid: uuid,
+        fullName: fullName,
+        address: address, 
+        phoneNumber: phoneNumber
+      }
+
       Swal.close();
-    tg.sendData(uuid)
+      
+      tg.sendData(JSON.stringify(result_data))
       tg.close();
     });
 
