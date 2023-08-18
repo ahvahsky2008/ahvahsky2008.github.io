@@ -176,16 +176,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
-      alert('before');
-      
       let user_id = String(tg.initDataUnsafe.user.id.toString());
-      alert('after');
-      alert(user_id);
 
-      const data = {
+      let data = {
         base64Image: base64Image,
-        user_id: user_id
-      };
+        user_id: user_id,
+        fullName: fullName,
+        address: address, 
+        phoneNumber: phoneNumber
+      }
 
 
       try {
@@ -207,19 +206,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Error during upload:", error);
       }
 
-      let result_data = {
-        user_id: user_id,
-        fullName: fullName,
-        address: address, 
-        phoneNumber: phoneNumber
-      }
+
 
       Swal.close();
-      alert(JSON.stringify(result_data));
-
-      tg.sendData(JSON.stringify(result_data))
-      alert('sending');
-      
       tg.close();
     });
 
