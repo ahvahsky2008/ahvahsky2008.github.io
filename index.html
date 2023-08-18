@@ -154,11 +154,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (fullName === "" || address === "" || phoneNumber === "" || isCanvasEmpty()===true) {
         Swal.fire(
-                'Good job!',
-                'Заполните все поля!',
-                'question'
+                'Внимание!',
+                'Заполните все поля и не забудьте про подпись!',
+                'error'
                 )
-             alert("Заполните все поля перед сохранением.");
             return;
        }
 
