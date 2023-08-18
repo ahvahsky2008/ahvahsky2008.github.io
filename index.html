@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress/nprogress.css">
+<script src="https://cdn.jsdelivr.net/npm/nprogress/nprogress.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Пример рисования</title>
@@ -13,9 +18,7 @@
 
 <body>
 
-    <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
-
+<script src="https://telegram.org/js/telegram-web-app.js?1"></script>
 
   <h1>Рисование на холсте</h1>
   <canvas id="canvas" width="400" height="300"></canvas>
@@ -59,16 +62,52 @@
     tg.expand()
     let savebtn = document.getElementById('saveButton')
     
-    savebtn.addEventListener("click", () => {
+    savebtn.addEventListener("click", async () => {
       const image = canvas.toDataURL("image/png");
       const base64Image = image.split(",")[1];
-      const compressedData = pako.deflate(base64Image, { to: 'string' });
+      console.log("Base64 Image:", base64Image);
 
-      tg.sendData(compressedData);
+      const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
+
+      const uuid = generateUUID(); // Генерируем UUID
+      const data = {
+        base64Image: base64Image,
+        uuid: uuid
+      };
+
+      NProgress.start(); // Начать показ прогресс-бара
+
+      try {
+        // Отправляем данные на сервер
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          console.log("Image successfully uploaded.");
+        } else {
+          console.log("Image upload failed.");
+        }
+      } catch (error) {
+        console.error("Error during upload:", error);
+      }
+
+      NProgress.done(); // Завершить показ прогресс-бара
+
       tg.close();
     });
 
-    
+    function generateUUID() {
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0,
+          v = c === "x" ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
 
   </script>
 </body>
