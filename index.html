@@ -86,6 +86,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     let axixa = window.Telegram.WebApp.initDataUnsafe.user.id;
     alert(axixa);
+    alert(tg.initDataUnsafe.user.first_name);
+    alert(tg.initDataUnsafe.user.id);
       document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
     document.getElementById('fullName').value = 'Курае Ахвах';
         document.getElementById('address').value ='Горького';
@@ -244,3 +246,5 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 </body>
 </html>
+
+
