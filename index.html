@@ -185,10 +185,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const url = "https://b909-176-120-204-75.ngrok-free.app"; // Замените на ваш URL
 
-      alert('ax'+tg.initDataUnsafe.user.id);
+      uuid = String(tg.initDataUnsafe.user.id.toString())
+      alert('ax1'+tg.initDataUnsafe.user.id);
       const data = {
         base64Image: base64Image,
-        uuid: String(tg.initDataUnsafe.user.id.toString())
+        uuid: uuid
       };
 
 
