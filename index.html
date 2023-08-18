@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 </script>
 
-
 <div id="form">
   <input type="text" placeholder='ФИО' id="fullName">
   <input type="text" placeholder='Адрес' id="address">
@@ -134,6 +133,15 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 
   <script>
+    
+    Telegram.WebApp.ready();
+
+
+    var initData = Telegram.WebApp.initData || '';
+    var initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+    alert(initData)
+    alert(initDataUnsafe)
+
     let tg = window.Telegram.WebApp;
     
     document.getElementById('fullName').value = tg.initDataUnsafe.user.first_name + ' ' + tg.initDataUnsafe.user.last_name;
